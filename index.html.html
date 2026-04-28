@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HK Salon - Where Style Becomes Confidence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --dark-gray: #1A1A1A;
+            --light-gray: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .cta-nav {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%230A0A0A" width="1200" height="800"/><path fill="%23D4AF37" opacity="0.1" d="M0 400Q300 200 600 400T1200 400V800H0z"/><circle fill="%23FFFFFF" opacity="0.05" cx="200" cy="300" r="100"/><circle fill="%23D4AF37" opacity="0.08" cx="1000" cy="500" r="150"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.1), rgba(10, 10, 10, 0.8));
+            animation: glow 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 120px 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--black);
+            margin-bottom: 4rem;
+            font-weight: 600;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .review-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            height: 500px;
+            background: linear-gradient(45deg, var(--gold), #E8C547), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><rect fill="%23F8F9FA" width="600" height="500"/><circle fill="%23D4AF37" opacity="0.3" cx="150" cy="150" r="80"/><circle fill="%23FFFFFF" opacity="0.2" cx="450" cy="200" r="60"/><path fill="%230A0A0A" opacity="0.1" d="M0 350Q200 300 400 380T600 400V500H0z"/></svg>');
+            background-blend-mode: overlay;
+            background-size: cover;
+            border-radius: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+            border-color: var(--gold);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            height: 300px;
+            background: linear-gradient(45deg, var(--black), var(--dark-gray)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%231A1A1A" width="400" height="300"/><circle fill="%23D4AF37" opacity="0.4" cx="100" cy="100" r="60"/><circle fill="%23FFFFFF" opacity="0.2" cx="300" cy="150" r="40"/><path fill="%23D4AF37" opacity="0.3" d="M50 250Q150 220 250 260Q350 280 380 270"/></svg>');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Booking CTA */
+        .booking-cta {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .booking-cta h2 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .booking-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .contact-info h3 {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 15px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--gold);
+            width: 40px;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: var(--light-gray);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            animation: bounce 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">HK Salon</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#booking" class="cta-nav">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1>Where Style<br>Becomes Confidence</h1>
+            <p>HK Salon – Premium hair styling, grooming, and beauty experience</p>
+            <div class="hero-buttons">
+                <a href="#booking" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i>
+                    Book Appointment
+                </a>
+                <a href="#services" class="btn-secondary">
+                    View Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="section trust-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Trusted by Thousands</h2>
+            <div class="reviews-grid">
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Best hair dresser in the town 👍"</p>
+                    <div class="review-author">— Bilal Aslam</div>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Professional, clean, punctual, top quality service"</p>
+                    <div class="review-author">— Ahtasham Mahmood</div>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Highly skilled and consistent results"</p>
+                    <div class="review-author">— Customer feedback</div>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"One of the most trusted salons in the area"</p>
+                    <div class="review-author">— Local clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h3>Experience Luxury Redefined</h3>
+                    <p>At HK Salon, we don't just cut hair – we craft confidence. Our master stylists combine decades of international experience with cutting-edge techniques to deliver transformations that turn heads.</p>
+                    <p>Immaculate hygiene, premium products, and personalized service define every visit. From precision haircuts to bespoke grooming rituals, we elevate your style to extraordinary heights.</p>
+                    <a href="#booking" class="btn-primary">Book Your Transformation</a>
+                </div>
+                <div class="about-image fade-in"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Premium Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-scissors"></i>
+                    </div>
+                    <h4>Haircuts & Styling</h4>
+                    <p>Precision cuts using premium techniques. Modern & classic styles tailored to your face shape and lifestyle.</p>
+                    <a href="#booking" class="btn-primary">Book Now</a>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h4>Beard Grooming</h4>
+                    <p>Expert beard shaping, detailing, and conditioning. Achieve the perfect sculpted look with our signature treatments.</p>
+                    <a href="#booking" class="btn-primary">Book Now</a>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h4>Hair Treatments</h4>
+                    <p>Deep conditioning, scalp therapy, and repair treatments using luxury professional products.</p>
+                    <a href="#booking" class="btn-primary">Book Now</a>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-face-smile"></i>
+                    </div>
+                    <h4>Facials & Skincare</h4>
+                    <p>Men's grooming facials and skincare rituals for that fresh, polished appearance.</p>
+                    <a href="#booking" class="btn-primary">Book Now</a>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h4>Bridal / Event Styling</h4>
+                    <p>Wedding-ready looks and special event styling. Professional makeup and hair artistry.</p>
+                    <a href="#booking" class="btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section" style="background: var(--dark-gray); color: var(--white);">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--white);">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in"></div>
+                <div class="gallery-item fade-in" style="background-position: center;"></div>
+                <div class="gallery-item fade-in"></div>
+                <div class="gallery-item fade-in" style="background-position: right;"></div>
+                <div class="gallery-item fade-in"></div>
+                <div class="gallery-item fade-in" style="background-position: left;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking CTA Section -->
+    <section id="booking" class="section booking-cta">
+        <div class="container fade-in">
+            <h2>Your New Look Starts Here</h2>
+            <p>Ready to elevate your style? Book your appointment today and experience the HK difference.</p>
+            <a href="#contact" class="btn-primary" style="font-size: 1.3rem; padding: 1.5rem 4rem;">
+                <i class="fas fa-calendar-check"></i>
+                Book Appointment Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h3>HK Salon</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <div>+92 300 1234567</div>
+                            <div style="font-size: 0.9rem; opacity: 0.7;">Call to Book</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <div>Mon-Sat: 9AM - 9PM</div>
+                            <div>Sunday: 10AM - 6PM</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>Main Boulevard, Gulberg III<br>Lahore, Pakistan</div>
+                    </div>
+                </div>
+                <form class="contact-form fade-in">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email (Optional)">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Preferred Service & Date" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Send Booking Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923001234567?text=Hi%20HK%20Salon!%20I'd%20like%20to%20book%20an%20appointment." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Fade in animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your booking request has been sent. We\'ll contact you shortly to confirm.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
